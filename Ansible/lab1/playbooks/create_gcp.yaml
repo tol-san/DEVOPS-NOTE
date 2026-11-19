@@ -1,0 +1,20 @@
+- name: Create GCP Playbook
+  hosts: localhost
+  vars_files:
+    - vars/gcp_credential.yaml
+  tasks:
+    - name: Slurp Local Public Key
+      slurp: 
+        src: "{{ssh_pub_path}}"
+      register: ssh_pub_key
+    - name: Install Pip
+      apt: 
+        name: python3-pip
+        state: present
+      when: true
+    - name: Ensure the package are installed
+      pip:
+        name: 
+          - requests
+          - google-auth
+      when: true
