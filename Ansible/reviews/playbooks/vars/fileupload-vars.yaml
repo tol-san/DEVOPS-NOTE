@@ -1,0 +1,7 @@
+fileupload:
+  git_url: https://github.com/tol-san/springboot-file-upload-service.git
+  path: ~/Documents
+  docker:
+    username: mrtol
+    image: spring-fileupload
+    dh_image: "{{fileupload.docker.username}}/{{fileupload.docker.image}}"

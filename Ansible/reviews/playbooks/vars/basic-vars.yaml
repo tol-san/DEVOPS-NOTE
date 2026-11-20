@@ -1,0 +1,6 @@
+database:
+  username: admin
+  password: admin
+user:
+  username: deploy-agent
+  password: agent@12345

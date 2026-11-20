@@ -1,0 +1,12 @@
+- name: Build & Push Spring File Server Playbook
+  hosts: localhost
+  vars_files:
+    - ./vars/fileupload-vars.yaml
+  tasks:
+    - name: Clone source code
+      command: "git clone {{fileupload.git_url}} {{fileupload.path}}"
+    - name: Build Docker Image
+      commnad: "docker build -t {{fileupload.dh_image}}."
+      args: 
+        chdir: "{{fuleupload.path}}"
+  

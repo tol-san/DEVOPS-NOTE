@@ -1,0 +1,23 @@
+---
+- name: Basic Playbooks
+  hosts: stag-server
+  become: true
+  vars_files:
+    - ./vars/basic-vars.yaml
+  tasks:
+    - name: Debug Variables
+      debug:
+        smg: "Linux username: {{user.username}}, Database user: {{database.username}}"
+    - name: Install Neofetch
+      apt:
+        name: fastfetch 
+        state: present
+        update_cache: true
+
+    - name: Create New User
+      user:
+        name: "{{ user.username }}"
+        password: "{{ user.password | password_hash('sha512') }}"
+        shell: /bin/bash
+        create_home: true
+        groups: sudo
